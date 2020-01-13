@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 Route::post('weixin','Weixin\WeiXinController@weixin');
+Route::get('/weixin/test','Weixin\WeiXinController@test');  //测试
+Route::get('/weixin/auth','Weixin\WeiXinController@auth');  //测试
+
 
 //练习上课
 Route::get('/lianxi/curl','Lianxi\LianxiController@curl');

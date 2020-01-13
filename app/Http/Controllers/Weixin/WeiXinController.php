@@ -188,6 +188,25 @@ class WeiXinController extends Controller
     }
 
 
+    public function test(){
+        $appid=env('WX_APPID');
+        $redirect_uri=urlencode(env('WX_AUTH_REDIRECT_URI'));
+        $url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$appid.'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+        echo $url;
+    }
+
+
+    public function auth(){
+        //接收code
+        $code=$_GET['code'];
+
+        //换取access_token
+        $url='https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WX_APPID').'&secret='.env('WX_APPSEC').'&code='.$code.'&grant_type=authorization_code';
+        $json_data=file_get_contents($url);
+        $arr=json_decode($json_data,true);
+        echo '<pre>';print_r($arr);echo '</pre>';
+    }
+
 
 
 
