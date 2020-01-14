@@ -171,21 +171,21 @@ class WeiXinController extends Controller
                 ],
 
 
-                    [
-                    "name"  => "二级菜单",
-                    "sub_button"    => [
-                        [
-                            "type"  => "scancode_push",
-                            "name"  => "扫一扫",
-                            "key"   => "scan111"
-                        ],
-                        [
-                            "type"  => "pic_sysphoto",
-                            "name"  => "拍照",
-                            "key"   => "photo111"
-                        ],
-                    ]
-                ],
+//                    [
+//                    "name"  => "二级菜单",
+//                    "sub_button"    => [
+//                        [
+//                            "type"  => "scancode_push",
+//                            "name"  => "扫一扫",
+//                            "key"   => "scan111"
+//                        ],
+//                        [
+//                            "type"  => "pic_sysphoto",
+//                            "name"  => "拍照",
+//                            "key"   => "photo111"
+//                        ],
+//                    ]
+//                ],
             ]
         ];
 //        Curl::Post($url,$menu);
