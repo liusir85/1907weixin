@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Tools\Wechat;
 use App\Model\Wxber;
 use App\Model\Guanzhu;
+use Illuminate\Support\Facades\Redis;
 class WeiXinController extends Controller
 {
 //    private  $student=['刘清源','王振国','老高'];
@@ -163,7 +164,8 @@ class WeiXinController extends Controller
                     "key"   => "1906weixin"
                 ],
 
-                [
+
+                    [
                     "name"  => "二级菜单",
                     "sub_button"    => [
                         [
@@ -199,7 +201,6 @@ class WeiXinController extends Controller
     public function auth(){
         //接收code
         $code=$_GET['code'];
-
         //换取access_token
         $url='https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WX_APPID').'&secret='.env('WX_APPSEC').'&code='.$code.'&grant_type=authorization_code';
         $json_data=file_get_contents($url);
@@ -212,6 +213,27 @@ class WeiXinController extends Controller
         $json_user_info=file_get_contents($url);
         $user_info_arr=json_decode($json_user_info,true);
         echo '<pre>';print_r($user_info_arr);echo '</pre>';
+
+
+
+        //实现签到功能 记录用户签到
+        $redis_key = 'checkin:'.date('Y-m-d');
+        Redis::Zadd($redis_key,time(),$user_info_arr['openid']);  //将openid加入有序集合
+        echo $user_info_arr['nickname'] . "签到成功" . "签到时间： ".date("Y-m-d H:i:s");
+        echo '<hr>';
+        $user_list = Redis::zrange($redis_key,0,-1);
+        //echo '<hr>';
+        //echo '<pre>';print_r($user_list);echo '</pre>';
+        foreach ($user_list as $k=>$v)
+        {
+            $key = 'h:user_info:'.$v;
+            $u = Redis::hGetAll($key);
+            if(empty($u)){
+                continue;
+            }
+            //echo '<pre>';print_r($u);echo '</pre>';
+            echo " <img src='".$u['headimgurl']."'> ";
+        }
     }
 
 
