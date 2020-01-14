@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('info',function(){
+    phpinfo();
+});
+
 Route::post('weixin','Weixin\WeiXinController@weixin');
 Route::get('/weixin/test','Weixin\WeiXinController@test');  //测试
 Route::get('/weixin/auth','Weixin\WeiXinController@auth');  //测试
