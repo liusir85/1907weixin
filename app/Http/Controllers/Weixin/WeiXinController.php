@@ -158,34 +158,12 @@ class WeiXinController extends Controller
         //echo $url;echo '</br>';
         $postData = [
             "button"    => [
-//                [
-//                    "type"  => "click",
-//                    "name"  => "AAAA",
-//                    "key"   => "1906weixin"
-//                ],
 
                 [
                     "type"  => "view",
                     "name"  => "签到",
                     "url"   => "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0079197aeab14faf&redirect_uri=https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0079197aeab14faf&redirect_uri=http%3A%2F%2F1905liuqingyuan.comcto.com%2Fweixin%2Fauth&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
                 ],
-
-
-//                    [
-//                    "name"  => "二级菜单",
-//                    "sub_button"    => [
-//                        [
-//                            "type"  => "scancode_push",
-//                            "name"  => "扫一扫",
-//                            "key"   => "scan111"
-//                        ],
-//                        [
-//                            "type"  => "pic_sysphoto",
-//                            "name"  => "拍照",
-//                            "key"   => "photo111"
-//                        ],
-//                    ]
-//                ],
             ]
         ];
 //        Curl::Post($url,$menu);
