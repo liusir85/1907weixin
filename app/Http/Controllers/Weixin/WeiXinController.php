@@ -155,22 +155,34 @@ class WeiXinController extends Controller
         $access_token=Wechat::getAccessToken();
         //echo date("Y-m-d H:i:s");echo '</br>';
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token=' . $access_token;
-        //echo $url;echo '</br>';
         $postData = [
             "button"    => [
-
                 [
                     "type"  => "view",
                     "name"  => "签到",
-                    "url"   => "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0079197aeab14faf&redirect_uri=https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0079197aeab14faf&redirect_uri=http%3A%2F%2F1905liuqingyuan.comcto.com%2Fweixin%2Fauth&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
-                ],
-            ]
+                    "url"   => "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0079197aeab14faf&redirect_uri=http%3A%2F%2F1905liuqingyuan.comcto.com%2Fweixin%2Fauth&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+                    ]
+//                                [
+//                    "name"  => "二级菜单",
+//                    "sub_button"    => [
+//                        [
+//                            "type"  => "scancode_push",
+//                            "name"  => "扫一扫",
+//                            "key"   => "scan111"
+//                        ],
+//                        [
+//                            "type"  => "pic_sysphoto",
+//                            "name"  => "拍照",
+//                            "key"   => "photo111"
+//                        ]
+//                    ]
+//                ],
+            ],
         ];
-//        Curl::Post($url,$menu);
-        $postData=json_encode($postData,JSON_UNESCAPED_UNICODE);
         //返回地址
         $res=Curl::post($url,$postData);
-        json_decode($res,true);
+        $res = json_decode($res,true);
+        dd($res);
     }
 
 

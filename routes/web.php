@@ -57,4 +57,4 @@ Route::get('/guanzhu/charts','Guanzhu\GuanzhuController@charts');
 
 
 
-Route::get('weixin/menu','Weixin\WeiXinController@createMenu');    //创建菜单
+Route::get('/weixin/menu','Weixin\WeiXinController@createMenu');    //创建菜单
